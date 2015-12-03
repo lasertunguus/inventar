@@ -2,7 +2,6 @@ package ee.ttu.tali.idu1550.inventory;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
