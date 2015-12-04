@@ -6,4 +6,8 @@ public interface ProductInstanceDao {
 
     public void save(ProductInstance productInstance);
     
+    public void update(ProductInstance productInstance);
+    
+    public ProductInstance findByName(String name);
+    
 }

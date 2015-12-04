@@ -19,5 +19,16 @@ public class ProductType {
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
+    
+    public ProductType() {}
+    
+    public ProductType(String name) {
+        this.name = name;
+    }
+    
+    public ProductType(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
 }
