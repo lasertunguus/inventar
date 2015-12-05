@@ -1,17 +1,25 @@
 package ee.ttu.tali.idu1550.inventory;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "INVENTORY_ENTRY", catalog = "INVENTORY")
 public class InventoryEntry {
-    
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Integer id;
     private List<ProductInstance> productInstances;
     private ProductType productType;
 
@@ -35,7 +43,7 @@ public class InventoryEntry {
     }
 
     @OneToMany
-    @JoinColumn(name="id")
+    @JoinColumn(name = "id")
     public List<ProductInstance> getProductInstances() {
         return productInstances;
     }
@@ -44,16 +52,17 @@ public class InventoryEntry {
         this.productInstances = productInstances;
     }
 
-    @OneToMany
-    @JoinColumn(name="id")
+    @OneToOne
+    @JoinColumn(name = "id")
     public ProductType getProductType() {
         return productType;
     }
-    
+
     public void setProductType(ProductType type) {
         productType = type;
     }
 
+    // if handle reservations
     public int getNumberAvailable() {
         // TODO
         return 0;
@@ -68,6 +77,5 @@ public class InventoryEntry {
     public boolean canAcceptReservationRequest(/* ReservationRequest */ Object request) {
         return false;
     }
-
 
 }
