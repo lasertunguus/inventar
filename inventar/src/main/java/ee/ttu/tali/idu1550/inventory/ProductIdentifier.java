@@ -19,6 +19,8 @@ public class ProductIdentifier {
     private Integer id;
 
     private ProductType productType;
+    
+    public ProductIdentifier() {}
 
     public ProductIdentifier(ProductType productType) {
         this.productType = productType;

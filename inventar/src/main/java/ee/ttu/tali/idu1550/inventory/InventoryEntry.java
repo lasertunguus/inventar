@@ -22,6 +22,8 @@ public class InventoryEntry {
     private Integer id;
     private List<ProductInstance> productInstances;
     private ProductType productType;
+    
+    public InventoryEntry() {}
 
     public void addProductInstance(ProductInstance instance) {
         getProductInstances().add(instance);

@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "INVENTORY", catalog = "INVENTORY")
 public class Inventory {
+    
+    public Inventory() {}
 
     private List<InventoryEntry> inventoryEntries;
 
