@@ -6,17 +6,7 @@ import org.hibernate.criterion.Restrictions;
 import ee.ttu.tali.idu1550.inventory.ProductInstance;
 import ee.ttu.tali.idu1550.inventory.ProductType;
 
-public class ProductTypeDaoImpl extends AbstractDao<ProductType> implements ProductTypeDao {
-
-    @Override
-    public void save(ProductType productType) {
-        persist(productType);
-    }
-
-    @Override
-    public void update(ProductType productType) {
-        update(productType);
-    }
+public class ProductTypeDaoImpl extends GenericHibernateDao<ProductType, Integer> implements ProductTypeDao {
 
     @Override
     public ProductType findByName(String name) {
