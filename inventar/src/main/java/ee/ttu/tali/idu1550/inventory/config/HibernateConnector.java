@@ -3,6 +3,7 @@ package ee.ttu.tali.idu1550.inventory.config;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateConnector {
@@ -13,7 +14,7 @@ public class HibernateConnector {
 
     @SuppressWarnings("deprecation")
     private HibernateConnector() throws HibernateException {
-        cfg = new Configuration().configure();
+        cfg = new AnnotationConfiguration().configure();
         sessionFactory = cfg.buildSessionFactory();
     }
 

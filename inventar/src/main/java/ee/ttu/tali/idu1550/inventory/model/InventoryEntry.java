@@ -1,10 +1,11 @@
-package ee.ttu.tali.idu1550.inventory;
+package ee.ttu.tali.idu1550.inventory.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,11 +20,17 @@ public class InventoryEntry {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID", nullable = false, unique = true)
     private Integer id;
+    @OneToMany
+    @JoinColumn(name = "PRODUCT_INSTANCE_FK")
     private List<ProductInstance> productInstances;
+    @OneToOne
+    @JoinColumn(name = "PRODUCT_TYPE_FK")
     private ProductType productType;
-    
-    public InventoryEntry() {}
+
+    public InventoryEntry() {
+    }
 
     public void addProductInstance(ProductInstance instance) {
         getProductInstances().add(instance);
@@ -44,8 +51,6 @@ public class InventoryEntry {
         return null;
     }
 
-    @OneToMany
-    @JoinColumn(name = "id")
     public List<ProductInstance> getProductInstances() {
         return productInstances;
     }
@@ -54,8 +59,6 @@ public class InventoryEntry {
         this.productInstances = productInstances;
     }
 
-    @OneToOne
-    @JoinColumn(name = "id")
     public ProductType getProductType() {
         return productType;
     }

@@ -1,8 +1,9 @@
-package ee.ttu.tali.idu1550.inventory;
+package ee.ttu.tali.idu1550.inventory.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,8 +17,10 @@ public class ProductIdentifier {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name="ID", nullable=false, unique=true)
     private Integer id;
-
+    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinColumn(name ="PRODUCT_TYPE_FK")
     private ProductType productType;
     
     public ProductIdentifier() {}
@@ -26,8 +29,6 @@ public class ProductIdentifier {
         this.productType = productType;
     }
 
-    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name = "id")
     public ProductType getProductType() {
         return productType;
     }

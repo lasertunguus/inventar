@@ -1,4 +1,4 @@
-package ee.ttu.tali.idu1550.inventory;
+package ee.ttu.tali.idu1550.inventory.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -17,27 +17,28 @@ public class ProductType {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "ID", nullable = false, unique = true)
     private Integer id;
     @Column(name = "NAME", nullable = false)
     private String name;
     @Column(name = "DESCRIPTION")
     private String description;
-    
+    @OneToOne(cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ID")
     private ProductIdentifier productIdentifier;
-    
-    public ProductType() {}
-    
+
+    public ProductType() {
+    }
+
     public ProductType(String name) {
         this.name = name;
     }
-    
+
     public ProductType(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    @OneToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "id")
     public ProductIdentifier getProductIdentifier() {
         return productIdentifier;
     }

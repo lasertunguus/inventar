@@ -4,20 +4,22 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+
+import ee.ttu.tali.idu1550.inventory.config.HibernateConnector;
 
 public abstract class GenericHibernateDao<T, PK extends Serializable> implements GenericDao<T, PK> {
 
     protected Class<T> entityClass;
 
-    private SessionFactory sessionFactory;
+    private final HibernateConnector hibernateConnector;
 
     protected Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return hibernateConnector.getSession();
     }
 
     @SuppressWarnings("unchecked")
     public GenericHibernateDao() {
+        hibernateConnector = HibernateConnector.getInstance();
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
         this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
     }

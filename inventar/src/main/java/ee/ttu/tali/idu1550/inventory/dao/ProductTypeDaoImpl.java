@@ -3,8 +3,8 @@ package ee.ttu.tali.idu1550.inventory.dao;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-import ee.ttu.tali.idu1550.inventory.ProductInstance;
-import ee.ttu.tali.idu1550.inventory.ProductType;
+import ee.ttu.tali.idu1550.inventory.model.ProductInstance;
+import ee.ttu.tali.idu1550.inventory.model.ProductType;
 
 public class ProductTypeDaoImpl extends GenericHibernateDao<ProductType, Integer> implements ProductTypeDao {
 

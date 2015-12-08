@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
-        <property name="hibernate.connection.password">admin123</property>
-        <property name="hibernate.connection.url">jdbc:h2:db.h2</property>
-        <property name="hibernate.connection.username">admin</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-    </session-factory>
+ <session-factory>
+  <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+  <property name="hibernate.connection.password">admin123</property>
+  <property name="hibernate.connection.url">jdbc:h2:./db.h2;INIT=CREATE SCHEMA IF NOT EXISTS INVENTORY</property>
+  <property name="hibernate.connection.username">admin</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+  <property name="show_sql">true</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <property name="hbm2ddl.auto">create</property>
+  <mapping class="ee.ttu.tali.idu1550.inventory.model.Inventory"/>
+  <mapping class="ee.ttu.tali.idu1550.inventory.model.InventoryEntry"/>
+  <mapping class="ee.ttu.tali.idu1550.inventory.model.ProductIdentifier"/>
+  <mapping class="ee.ttu.tali.idu1550.inventory.model.ProductInstance"/>
+  <mapping class="ee.ttu.tali.idu1550.inventory.model.ProductType"/>
+ </session-factory>
 </hibernate-configuration>
