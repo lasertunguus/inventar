@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import ee.ttu.tali.idu1550.inventory.dao.ProductTypeDaoImpl;
 import ee.ttu.tali.idu1550.inventory.model.Inventory;
 import ee.ttu.tali.idu1550.inventory.model.InventoryEntry;
+import ee.ttu.tali.idu1550.inventory.model.ProductIdentifier;
 import ee.ttu.tali.idu1550.inventory.model.ProductType;
 import ee.ttu.tali.idu1550.inventory.service.InventoryService;
 
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:./db.h2", "admin", "admin123");
+//        Class.forName("org.h2.Driver");
+//        Connection conn = DriverManager.getConnection("jdbc:h2:./db.h2", "admin", "admin123");
         try {
             Inventory inventory = new Inventory();
             InventoryService inventoryService = new InventoryService();
@@ -31,10 +32,15 @@ public class Main {
             System.out.println("Creating product types");
             productTypeDao.create(type1);
             productTypeDao.create(type2);
+            
+            System.out.println("Creating product identifiers");
+            
+//            productInstanceDao.create(type1);
+//            productInstanceDao.create(type2);
 
             InventoryEntry entry = new InventoryEntry();
         } finally {
-            conn.close();
+//            conn.close();
         }
         // entry.se
         // inv.addInventoryEntry(entry);

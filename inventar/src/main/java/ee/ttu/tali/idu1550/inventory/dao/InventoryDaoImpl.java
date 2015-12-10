@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import ee.ttu.tali.idu1550.inventory.model.Inventory;
 import ee.ttu.tali.idu1550.inventory.model.InventoryEntry;
 import ee.ttu.tali.idu1550.inventory.model.ProductIdentifier;
@@ -15,6 +18,8 @@ public class InventoryDaoImpl extends GenericHibernateDao<Inventory, Integer>
 
     @Override
     public List<InventoryEntry> findInventoryEntry(ProductIdentifier identifier) {
+        Criteria criteria = getSession().createCriteria(InventoryEntry.class);
+//        criteria.createCriteria(")
         // TODO Auto-generated method stub
         return null;
     }

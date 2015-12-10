@@ -20,12 +20,23 @@ public class ProductInstance {
     private Integer id;
     @Column(name = "NAME", nullable = false)
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "INVENTORY_ENTRY_FK")
+    private InventoryEntry inventoryEntry;
     // private Reservation reservation
-    @ManyToOne() // (cascade = { CascadeType.PERSIST }) don't want REMOVE
+    @ManyToOne // (cascade = { CascadeType.PERSIST }) don't want REMOVE
     @JoinColumn(name = "PRODUCT_TYPE_FK")
     private ProductType productType;
 
     public ProductInstance() {
+    }
+
+    public InventoryEntry getInventoryEntry() {
+        return inventoryEntry;
+    }
+
+    public void setInventoryEntry(InventoryEntry inventoryEntry) {
+        this.inventoryEntry = inventoryEntry;
     }
 
     public ProductInstance(String name) {

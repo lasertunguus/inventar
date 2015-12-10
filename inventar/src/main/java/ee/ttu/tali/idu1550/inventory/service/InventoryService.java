@@ -8,9 +8,9 @@ import ee.ttu.tali.idu1550.inventory.model.InventoryEntry;
 import ee.ttu.tali.idu1550.inventory.model.ProductIdentifier;
 import ee.ttu.tali.idu1550.inventory.model.ProductType;
 
-public class InventoryService {
+public class InventoryService implements Service<Inventory, Integer> {
 
-    private static InventoryDaoImpl inventoryDao;
+    private final InventoryDaoImpl inventoryDao;
 
     public InventoryService() {
         inventoryDao = new InventoryDaoImpl();
@@ -43,8 +43,7 @@ public class InventoryService {
     }
 
     public List<InventoryEntry> findInventoryEntry(ProductIdentifier identifier) {
-        // TODO
-        return null;
+        return inventoryDao.findInventoryEntry(identifier); 
     }
 
     public List<ProductType> getProductTypes(Inventory inventory) {

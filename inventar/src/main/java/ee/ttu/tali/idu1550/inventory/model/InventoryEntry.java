@@ -26,9 +26,7 @@ public class InventoryEntry {
     @ManyToOne
     @JoinColumn(name = "INVENTORY_FK")
     private Inventory inventory;
-
-    @OneToMany
-    @JoinColumn(name = "PRODUCT_INSTANCE_FK")
+    @OneToMany(mappedBy = "inventoryEntry")
     private List<ProductInstance> productInstances;
     @OneToOne
     @JoinColumn(name = "PRODUCT_TYPE_FK")
