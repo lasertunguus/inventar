@@ -3,19 +3,20 @@ package ee.ttu.tali.idu1550.inventory.config;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateConnector {
 
     private static HibernateConnector me;
-    private Configuration cfg;
+    private Configuration configuration;
     private SessionFactory sessionFactory;
 
-    @SuppressWarnings("deprecation")
     private HibernateConnector() throws HibernateException {
-        cfg = new AnnotationConfiguration().configure();
-        sessionFactory = cfg.buildSessionFactory();
+        configuration = new Configuration().configure();
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties());
+        sessionFactory = configuration.buildSessionFactory(builder.build());
     }
 
     public static synchronized HibernateConnector getInstance() throws HibernateException {
@@ -33,9 +34,10 @@ public class HibernateConnector {
         return session;
     }
 
-    @SuppressWarnings("deprecation")
     private void reconnect() throws HibernateException {
-        this.sessionFactory = cfg.buildSessionFactory();
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties());
+        this.sessionFactory = configuration.buildSessionFactory(builder.build());
     }
 
 }
