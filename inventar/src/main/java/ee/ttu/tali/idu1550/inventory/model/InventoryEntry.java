@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,6 +23,10 @@ public class InventoryEntry {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "INVENTORY_FK")
+    private Inventory inventory;
+
     @OneToMany
     @JoinColumn(name = "PRODUCT_INSTANCE_FK")
     private List<ProductInstance> productInstances;
@@ -30,6 +35,14 @@ public class InventoryEntry {
     private ProductType productType;
 
     public InventoryEntry() {
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public void addProductInstance(ProductInstance instance) {
