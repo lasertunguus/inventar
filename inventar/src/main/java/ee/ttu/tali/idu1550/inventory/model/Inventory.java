@@ -20,7 +20,7 @@ public class Inventory {
     @Column(name = "ID", nullable = false, unique = true)
     private Integer id;
 
-    @OneToMany(mappedBy = "INVENTORY_FK")
+    @OneToMany(mappedBy = "inventory")
     private List<InventoryEntry> inventoryEntries;
 
     public Inventory() {
