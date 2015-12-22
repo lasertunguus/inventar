@@ -19,13 +19,15 @@ public class ProductIdentifier {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name="ID", nullable=false, unique=true)
     private Integer id;
+    private String identifier;
     @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinColumn(name ="PRODUCT_TYPE_FK")
     private ProductType productType;
     
     public ProductIdentifier() {}
 
-    public ProductIdentifier(ProductType productType) {
+    public ProductIdentifier(String identifier, ProductType productType) {
+        this.identifier = identifier;
         this.productType = productType;
     }
 
